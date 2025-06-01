@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(orange, deeppink);
+  color: #fff;
+  text-align: center;
+}
+
+header h1 {
+  padding: 20px;
+  font-size: 2em;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.mapa-container {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  margin: auto;
+}
+
+.mapa-fundo {
+  width: 100%;
+  display: block;
+  border-radius: 15px;
+  border: 3px solid #fff;
+}
+
+.fase {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: crimson;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.fase.desbloqueada {
+  background-color: #00ff88;
+}
+
+.fase.bloqueada {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.fase:hover {
+  transform: scale(1.2);
+}
+
+.mensagem-final {
+  margin-top: 30px;
+  background: #222;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #00ff88;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}

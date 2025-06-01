@@ -1,0 +1,40 @@
+body {
+    background: linear-gradient(135deg, #ff9966 0%, #ff5e62 100%);
+    min-height: 100vh;
+}
+.navbar, .footer-gradient {
+    background: linear-gradient(90deg, #ff9966 0%, #ff5e62 100%) !important;
+}
+.banner-gradient {
+    background: linear-gradient(120deg, #ff9966 0%, #ff5e62 100%) !important;
+}
+.card {
+    border: none;
+}
+.card-body {
+    background: #fff3e6;
+    border-radius: 0 0 1rem 1rem;
+}
+.btn-primary {
+    background: #ff5e62;
+    border: none;
+}
+.btn-primary:hover {
+    background: #ff9966;
+}
+.btn-success {
+    background: #ff9966;
+    border: none;
+    color: #fff;
+}
+.btn-success:hover {
+    background: #ff5e62;
+    color: #fff;
+}
+.btn-info {
+    background: #ff5e62;
+    border: none;
+}
+.btn-info:hover {
+    background: #ff9966;
+}

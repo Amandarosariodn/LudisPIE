@@ -1,0 +1,146 @@
+/* Estilo geral para todas as páginas */
+body {
+    background: linear-gradient(to top, #FF0676,#FFA007);
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos para o cabeçalho */
+header {
+    background: linear-gradient(to top, #FFA007, #FF0676);
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.background-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.background-logo img {
+    width: 900px;
+    max-width: 100%;
+}
+
+.login-box  {
+    margin-top: -400px;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Container da logo grande */
+.logo-container {
+    width: 400px;
+    height: 200px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    right: 300%; /* Movendo mais para a esquerda */
+    transform: translateY(-50%);
+}
+
+/* Ajuste no tamanho da logo */
+.logo-container img {
+    width: 100%; /* A imagem se adapta ao círculo */
+    max-width: 450px;
+}
+
+.logo-small {
+    width: 300px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 200px;
+}
+
+/* Campos de entrada rosados */
+.input-custom {
+    border: 2px solid #FFABAC;
+    background-color: #FFE4E5;
+    color: #333;
+}
+
+.input-custom:focus {
+    border-color: #FF0676;
+    box-shadow: 0 0 5px #FF0676;
+}
+
+/* Botão Entrar rosado */
+.btn-custom {
+    background-color: #FFABAC;
+    border: none;
+    color: white;
+}
+
+.btn-custom:hover {
+    background-color: #FF0676;
+}
+
+/* Botão pequeno */
+.btn-custom.btn-sm {
+    padding: 5px 15px; /* Ajuste o tamanho do padding conforme necessário */
+    font-size: 14px; /* Tamanho da fonte */
+}
+
+/* Botão Cadastrar com borda rosada */
+.btn-outline-custom {
+    border: 2px solid #FFABAC;
+    color: #FFABAC;
+}
+
+.btn-outline-custom:hover {
+    background-color: #FFABAC;
+    color: white;
+}
+
+/* Estilo para os campos de entrada */
+.form-control {
+    background-color: #FFABAC !important; /* Cor de fundo rosa */
+    border: 1px solid #d18b8c; /* Borda levemente mais escura */
+    color: white; /* Texto branco */
+}
+
+/* Para mudar a cor do placeholder */
+.form-control::placeholder {
+    color: white; /* Texto do placeholder branco */
+    opacity: 0.7; /* Deixa mais suave */
+}
+
+/* Quando o usuário clica no campo */
+.form-control:focus {
+    background-color: #FFABAC !important; /* Mantém o fundo rosa ao focar */
+    border-color: #FF0676; /* Borda mais vibrante */
+    color: white;
+    box-shadow: 0 0 5px rgba(255, 6, 118, 0.5); /* Efeito de brilho */
+}
+
+/* Ajuste para garantir que o botão do olho fique alinhado */
+.input-group .btn-outline-secondary {
+    background-color: white; /* Fundo branco para contraste */
+    border-color: #d18b8c;
+}
+
+.input-group .btn-outline-secondary:hover {
+    background-color: #FF0676; /* Cor vibrante no hover */
+    color: white;
+}
+
+/* Ajuste das imagens de parceiros */
+.partner-logo {
+    max-width: 120px; /* Tamanho das logos */
+    height: auto;
+    filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.2)); /* Sombreamento para destaque */
+}
+.bd-placeholder-img{font-size:1.125rem;text-anchor:middle;-webkit-user-select:none;-moz-user-select:none;user-select:none}@media (min-width: 768px){.bd-placeholder-img-lg{font-size:3.5rem}}.b-example-divider{width:100%;height:3rem;background-color:#0000001a;border:solid rgba(0,0,0,.15);border-width:1px 0;box-shadow:inset 0 .5em 1.5em #0000001a,inset 0 .125em .5em #00000026}.b-example-vr{flex-shrink:0;width:1.5rem;height:100vh}.bi{vertical-align:-.125em;fill:currentColor}.nav-scroller{position:relative;z-index:2;height:2.75rem;overflow-y:hidden}.nav-scroller .nav{display:flex;flex-wrap:nowrap;padding-bottom:1rem;margin-top:-1px;overflow-x:auto;text-align:center;white-space:nowrap;-webkit-overflow-scrolling:touch}.btn-bd-primary{--bd-violet-bg: #712cf9;--bd-violet-rgb: 112.520718, 44.062154, 249.437846;--bs-btn-font-weight: 600;--bs-btn-color: var(--bs-white);--bs-btn-bg: var(--bd-violet-bg);--bs-btn-border-color: var(--bd-violet-bg);--bs-btn-hover-color: var(--bs-white);--bs-btn-hover-bg: #6528e0;--bs-btn-hover-border-color: #6528e0;--bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);--bs-btn-active-color: var(--bs-btn-hover-color);--bs-btn-active-bg: #5a23c8;--bs-btn-active-border-color: #5a23c8}.bd-mode-toggle{z-index:1500}.bd-mode-toggle .bi{width:1em;height:1em}.bd-mode-toggle .dropdown-menu .active .bi{display:block!important}
