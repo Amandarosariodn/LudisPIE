@@ -1,6 +1,6 @@
-// Chatbot
+//ChatBot
 document.getElementById('chatbot-toggle').addEventListener('click', () => {
-    document.getElementById('chatbot').style.display = 'flex';
+    document.getElementById('chatbot').style.display = 'block';
     document.getElementById('chatbot-toggle').style.display = 'none';
 });
 
@@ -19,35 +19,46 @@ function sendMessage() {
     const message = input.value.trim();
     if (message === '') return;
 
-    appendMessage('Você', message);
+    appendMessage('Você', message, 'user');
     input.value = '';
 
     setTimeout(() => {
-        appendMessage('LUDIS', getBotResponse(message));
+        const response = getBotResponse(message);
+        appendMessage('LUDIS', response, 'bot');
     }, 500);
 }
 
-function appendMessage(sender, text) {
+function appendMessage(sender, text, type) {
     const messages = document.getElementById('chatbot-messages');
     const msg = document.createElement('div');
-    msg.innerHTML = `<strong>${sender}:</strong> ${text}`;
+    msg.className = `chat-message ${type}`;
+
+    const avatar = document.createElement('img');
+    avatar.className = 'avatar';
+    avatar.src = type === 'bot' ? 'imagens/bot_avatar.png' : 'imagens/usuario_padrao.png';
+
+    const messageText = document.createElement('div');
+    messageText.className = 'text';
+    messageText.textContent = text;
+
+    msg.appendChild(avatar);
+    msg.appendChild(messageText);
     messages.appendChild(msg);
     messages.scrollTop = messages.scrollHeight;
 }
 
 function getBotResponse(message) {
     const msg = message.toLowerCase();
+
     if (msg.includes('fase') || msg.includes('mapa')) {
-        return 'Para acessar as fases, clique em "Mapa de Fases" no menu principal.';
-    } else if (msg.includes('pontuação') || msg.includes('ranking')) {
-        return 'Você pode conferir sua pontuação e sua posição na página "Ranking".';
+        return 'Você pode acessar as fases clicando em "Mapa de Fases" no menu.';
+    } else if (msg.includes('ranking') || msg.includes('pontuação')) {
+        return 'Você pode ver sua pontuação e posição na página "Ranking".';
     } else if (msg.includes('perfil')) {
-        return 'Visite seu perfil para atualizar suas informações e alterar sua foto.';
-    } else if (msg.includes('tutorial')) {
-        return 'O tutorial está disponível no menu, no canto superior esquerdo, para ajudar você a entender como o jogo funciona.';
+        return 'Na página "Meu Perfil", você pode editar seus dados e imagem.';
     } else if (msg.includes('suporte')) {
-        return 'O suporte, localizado no menu superior esquerdo, oferece respostas para as dúvidas mais comuns dos jogadores.';
+        return 'Você pode acessar a página "Suporte" pelo menu lateral.';
     } else {
-        return 'Desculpe, ainda estou aprendendo. Por favor, pergunte sobre mapa, fases, ranking, tutorial, suporte ou perfil para que eu possa ajudar.';
+        return 'Desculpe, ainda estou aprendendo. Tente perguntar sobre fases, ranking ou perfil.';
     }
 }

@@ -1,40 +1,473 @@
+/* Estilos gerais */
 body {
-    background: linear-gradient(135deg, #ff9966 0%, #ff5e62 100%);
-    min-height: 100vh;
+    background-color: white;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
 }
-.navbar, .footer-gradient {
-    background: linear-gradient(90deg, #ff9966 0%, #ff5e62 100%) !important;
+
+/* Header */
+header {
+    background: linear-gradient(to top, #FFA007, #FF0676);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
 }
-.banner-gradient {
-    background: linear-gradient(120deg, #ff9966 0%, #ff5e62 100%) !important;
+
+.header-left,
+.header-right {
+    display: flex;
+    align-items: center;
 }
-.card {
+
+.header-center {
+    flex-grow: 1;
+}
+
+/* Ícone do menu */
+.menu-icon i {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Ícone da página inicial */
+.home-icon a {
+    text-decoration: none;
+}
+
+.home-icon-img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+/* Foto de perfil */
+.profile-link {
+    text-decoration: none;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid white;
+    object-fit: cover;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+/* Menu lateral */
+.side-menu {
+    position: fixed;
+    top: 79px;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: linear-gradient(to top, #FF0676, #FFA007);
+    transition: left 0.3s ease;
+    z-index: 999;
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+#sideMenu ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#sideMenu ul li {
+    margin: 15px 0;
+}
+
+#sideMenu ul li a {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 0 15px;
+    border-radius: 5px;
+}
+
+#sideMenu ul li a.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FFD700;
+}
+
+#sideMenu ul li a:hover {
+    color: #FFD700;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#sideMenu ul li a i {
+    margin-right: 10px;
+}
+
+/* Botão do menu */
+header button {
+    background: transparent;
     border: none;
+    color: white;
+    font-size: 24px;
 }
-.card-body {
-    background: #fff3e6;
-    border-radius: 0 0 1rem 1rem;
+
+header i {
+    font-size: 30px;
 }
-.btn-primary {
-    background: #ff5e62;
+
+/* Logo e imagem de perfil */
+header a img {
+    height: 40px;
+    border-radius: 50%;
+    max-height: 40px;
+}
+
+/* Página de perfil */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#profilePic {
+    border: 4px solid #ddd;
+    padding: 5px;
+}
+
+#profileName {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #333;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+label {
+    cursor: pointer;
+}
+
+#editProfilePic {
+    display: none;
+}
+
+.profile-pic-container {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.profile-pic-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+#editProfilePicBtn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.edit-icon-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #ffffffcc;
+    border-radius: 50%;
+    padding: 8px;
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.2s ease;
+}
+
+.edit-icon-btn:hover {
+    background-color: #e2e2e2;
+}
+
+/* Avatares */
+.avatar-option {
+    cursor: pointer;
+    border-radius: 50%;
+    transition: transform 0.2s, border 0.2s;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.avatar-option:hover {
+    transform: scale(1.1);
+    border: 2px solid #FF0676;
+}
+
+.selected-avatar {
+    border: 3px solid #FF0676;
+    box-shadow: 0 0 10px rgba(255, 6, 118, 0.6);
+    transform: scale(1.05);
+}
+
+.avatar-layout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.avatar-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 250px;
+}
+
+.avatar-preview img {
+    width: 150px;
+    height: 150px;
+}
+
+.avatar-gallery {
+    flex: 1;
+    max-width: 850px;
+    border: 2px solid #dee2e6;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.avatar-gallery h5 {
+    margin-bottom: 20px;
+}
+
+.avatar-gallery .row {
+    justify-content: center;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Fases */
+.fase {
+    width: 200px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    color: white;
+}
+
+#fase1 { background-color: #FF6F61; }
+#fase2 { background-color: #6A5ACD; }
+#fase3 { background-color: #FF69B4; }
+#fase4 { background-color: #20B2AA; }
+#fase5 { background-color: #FF8C00; }
+#fase6 { background-color: #4682B4; }
+
+.fase a {
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fase:hover {
+    transform: scale(1.05);
+}
+
+.fase-completa {
+    background-color: #28a745;
+}
+
+.fase-bloqueada {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.fase-pendente {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.mapa-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.fase-botao {
+    flex: 0 0 auto;
+    margin: 10px;
+}
+
+/* Ranking - Cartão do jogador */
+.player-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #3D198E;
+}
+
+/* Chatbot */
+#chatbot {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 320px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    z-index: 9999;
+    border: 1px solid #ccc;
+    overflow: hidden;
+}
+
+#chatbot-header {
+    background: #0d6efd;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#chatbot-header .bot-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#botAvatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+#chatbot-messages {
+    height: 250px;
+    padding: 10px;
+    overflow-y: auto;
+    background: #f9f9f9;
+    font-size: 14px;
+}
+
+#chatbot-input-area {
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+
+#chatbot-input {
+    flex: 1;
+    padding: 10px;
     border: none;
+    font-size: 14px;
+    outline: none;
 }
-.btn-primary:hover {
-    background: #ff9966;
-}
-.btn-success {
-    background: #ff9966;
+
+#chatbot-send {
+    background: #0d6efd;
+    color: white;
     border: none;
-    color: #fff;
+    padding: 10px 15px;
+    cursor: pointer;
 }
-.btn-success:hover {
-    background: #ff5e62;
-    color: #fff;
-}
-.btn-info {
-    background: #ff5e62;
+
+#chatbot-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #0d6efd;
+    color: white;
     border: none;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 9999;
 }
-.btn-info:hover {
-    background: #ff9966;
+
+/* Estilo das mensagens */
+.chat-message {
+    margin: 5px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.chat-message.bot {
+    flex-direction: row;
+}
+
+.chat-message.user {
+    flex-direction: row-reverse;
+}
+
+.chat-message .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.chat-message .text {
+    background: #e9ecef;
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 70%;
+}
+
+.chat-message.user .text {
+    background: #d1e7dd;
 }

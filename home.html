@@ -1,47 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="src/styles/estilo.css">
     <title>Página Inicial</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="imagens/logoPie_pequena.png" type="image/png">
+    <link rel="icon" href="imagens/logoPie_pequena.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="imagens/logoPie_pequena.png" sizes="16x16" type="image/png">
+
+    <!-- Bootstrap e Ícones -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <!-- Seu CSS -->
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+
 </head>
-<body>
+
+<body class="home">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-gradient">
-            <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="#">
-                    <i class="fa-solid fa-house me-2"></i>
-                    Projeto Ludis
+        <div class="header-left">
+            <div class="menu-icon" id="menuButton"><i class="bi bi-list"></i></div>
+            <div class="home-icon">
+                <a href="home.html">
+                    <img src="imagens/logoPie_pequena.png" alt="Ícone Página Inicial" class="home-icon-img">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#home">Início</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#Ranks">Rank</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#Mapas">Mapa</a>
-                        </li>
-                    </ul>
-                </div>
             </div>
-        </nav>
+        </div>
+
+        <div class="header-center"></div>
+
+        <a href="perfil.html">
+            <img src="" alt="Foto de Perfil" id="profileImage" class="rounded-circle" width="50" height="50">
+        </a>
     </header>
+
+    <div id="sideMenu" class="side-menu">
+        <ul>
+            <li><a href="ranking.html"><i class="bi bi-trophy"></i> Ranking</a></li>
+            <li><a href="tutorial.html"><i class="bi bi-book"></i> Tutorial</a></li>
+            <li><a href="mapa.html"><i class="bi bi-map"></i> Mapa</a></li>
+            <li><a href="suporte.html"><i class="bi bi-headset"></i> Suporte</a></li>
+            <li><a href="login.html" id="logoutButton"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
+        </ul>
+    </div>
 
     <!-- Banner -->
     <section class="banner-gradient text-white text-center py-5 mb-4">
         <div class="container">
-            <h1 class="display-3 fw-bold">Bem-vindo ao Projeto Ludis!</h1>
+            <h3 class="display-3 fw-bold">Bem-vindo ao Projeto Ludis!</h3>
             <p class="lead mb-4">Explore rankings, mapas e conquiste seu lugar no topo!</p>
-            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Banner" class="img-fluid rounded shadow" style="max-height: 300px;">
+            <img src="imagens/logoPie_grande.png" alt="Banner" class="img-fluid rounded shadow"
+                style="max-height: 300px;">
         </div>
     </section>
 
@@ -49,45 +65,60 @@
     <main class="container mb-5">
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
+                <div class="card h-100 shadow-sm text-center">
+                    <div class="card-body">
                         <i class="fa-solid fa-trophy fa-3x text-warning mb-3"></i>
                         <h5 class="card-title">Rankings</h5>
-                        <p class="card-text">Veja quem está no topo e acompanhe sua evolução no ranking.</p>
-                        <a href="rank.html" class="btn btn-primary">Ver Rankings</a>
+                        <p class="card-text">Veja seu desempenho e compare com os demais jogadores.</p>
+                        <a href="ranking.html" class="btn btn-warning">Ver Ranking</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <i class="fa-solid fa-map-location-dot fa-3x text-success mb-3"></i>
-                        <h5 class="card-title">Mapas</h5>
-                        <p class="card-text">Explore os mapas disponíveis e descubra novos desafios.</p>
-                        <a href="#Mapas" class="btn btn-success">Ver Mapas</a>
+                <div class="card h-100 shadow-sm text-center">
+                    <div class="card-body">
+                        <i class="fa-solid fa-map fa-3x text-info mb-3"></i>
+                        <h5 class="card-title">Mapa de Fases</h5>
+                        <p class="card-text">Explore as trilhas e avance pelas fases do projeto.</p>
+                        <a href="mapa.html" class="btn btn-info">Ver Mapa</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body text-center">
-                        <i class="fa-solid fa-users fa-3x text-info mb-3"></i>
-                        <h5 class="card-title">Ajuda</h5>
-                        <p class="card-text">Precisa de ajuda? Clica aqui!</p>
-                        <a href="#" class="btn btn-info text-white">Entrar</a>
+                <div class="card h-100 shadow-sm text-center">
+                    <div class="card-body">
+                        <i class="fa-solid fa-user fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Perfil</h5>
+                        <p class="card-text">Veja ou edite seu perfil e personalize sua experiência.</p>
+                        <a href="perfil.html" class="btn btn-primary">Ver Perfil</a>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Rodapé -->
-    <footer class="footer-gradient text-white text-center py-3 mt-auto">
-        <div class="container">
-            <small>&copy; 2025 Projeto Ludis. Estudantes Da faculdade Salesiana.</small>
-        </div>
-    </footer>
+    <!-- Botão e Janela do Chatbot, se houver -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Scripts -->
+    <script>
+        // Script do menu lateral
+        const menuToggle = document.getElementById("menuToggle");
+        const sideMenu = document.getElementById("sideMenu");
+
+        menuToggle.addEventListener("click", () => {
+            sideMenu.classList.toggle("open");
+        });
+
+        // Carrega a imagem do perfil do usuário
+        window.addEventListener("DOMContentLoaded", () => {
+            const user = JSON.parse(sessionStorage.getItem("usuarioLogado")) || {};
+            const img = document.getElementById("userProfileImg");
+            if (user.imagem) {
+                img.src = user.imagem;
+            }
+        });
+    </script>
+    <script src="js\script.js"></script>
 </body>
+
 </html>

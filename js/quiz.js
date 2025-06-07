@@ -80,7 +80,7 @@ if (verificarFaseConcluida(tema)) {
         `;
     }
 
-    function checkAnswer(index) {
+    window.checkAnswer = function(index) {
         let question = perguntas[questionIndex];
 
         if (respostasMarcadas.includes(questionIndex)) return;
@@ -91,28 +91,28 @@ if (verificarFaseConcluida(tema)) {
 
         document.querySelectorAll(".list-group-item").forEach(btn => btn.disabled = true);
         document.getElementById("nextButton").disabled = false;
-    }
+    };
 
-    function nextQuestion() {
+    window.nextQuestion = function() {
         questionIndex++;
         if (questionIndex < perguntas.length) {
             loadQuestion();
             document.getElementById("nextButton").disabled = true;
         } else {
-            alert(`Você completou o quiz! Sua pontuação: ${pontuacao}`);
-            saveScore(pontuacao, tema); // Chama função correta
+            saveScore(pontuacao, tema);
+            alert(`Você completou o quiz! Sua pontuação: ${pontuacao}\nParabéns! Você concluiu a fase.`);
+            window.location.href = "mapa.html";
         }
-    }
+    };
 
-    // Expor função globalmente para o botão funcionar
-    window.nextQuestion = nextQuestion;
-
+    // Carrega a primeira pergunta ao iniciar
     loadQuestion();
+    document.getElementById("nextButton").disabled = true;
 }
 
+// ===== SALVAR SCORE E MARCAR FASE =====
 function saveScore(pontuacaoFinal, tema) {
     const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
-
     if (!loggedInUser) {
         alert("Erro: usuário não está logado.");
         window.location.href = "login.html";
@@ -130,7 +130,6 @@ function saveScore(pontuacaoFinal, tema) {
 
     localStorage.setItem("ranking", JSON.stringify(ranking));
 
-    // Marca progresso da fase
     const faseAtual = {
         financeiro: "fase1",
         tecnologia: "fase2",
@@ -143,9 +142,4 @@ function saveScore(pontuacaoFinal, tema) {
     const progressoFases = JSON.parse(localStorage.getItem("progressoFases")) || {};
     progressoFases[faseAtual[tema]] = true;
     localStorage.setItem("progressoFases", JSON.stringify(progressoFases));
-
-    setTimeout(() => {
-        alert("Parabéns! Você concluiu a fase.");
-        window.location.href = "mapa.html";
-    }, 100);
 }

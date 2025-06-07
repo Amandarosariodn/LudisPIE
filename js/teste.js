@@ -1,18 +1,40 @@
-window.onload=function(e) {
-    let vetor = [];
-    vetor.push({'id':1, 'foto':'Foto1', 'nome':'Nome1', 'pontuacao':'Pontuação1'});
-    vetor.push({'id':2, 'foto':'Foto2', 'nome':'Nome2', 'pontuacao':'Pontuação2'});
-    vetor.push({'id':3, 'foto':'Foto3', 'nome':'N0me3', 'pontuacao':'Pontuação3'});
-    vetor.push({'id':4, 'foto':'Foto4', 'nome':'Nome4', 'pontuacao':'Pontuação4'});
+window.onload = function () {
+    let vetor = [
+        {
+            id: 1,
+            foto: "https://api.dicebear.com/7.x/avataaars/svg?seed=PixelHero",
+            nome: "PixelHero",
+            pontuacao: "950"
+        },
+        {
+            id: 2,
+            foto: "https://api.dicebear.com/7.x/avataaars/svg?seed=NovaStar",
+            nome: "NovaStar",
+            pontuacao: "880"
+        },
+        {
+            id: 3,
+            foto: "https://api.dicebear.com/7.x/avataaars/svg?seed=CyberWolf",
+            nome: "CyberWolf",
+            pontuacao: "790"
+        },
+        {
+            id: 4,
+            foto: "https://api.dicebear.com/7.x/avataaars/svg?seed=ShadowCat",
+            nome: "ShadowCat",
+            pontuacao: "720"
+        }
+    ];
+
     let html = '';
     vetor.forEach(element => {
         html += '<tr>';
-        html += '<td>'+element.id+'</td>';
-        html += '<td>'+element.foto+'</td>';
-        html += '<td>'+element.nome+'</td>';
-        html += '<td>'+element.pontuacao+'</td>';
-        html += '</tr>';     
+        html += `<td class="fw-bold">${element.id}º</td>`;
+        html += `<td><img src="${element.foto}" class="rounded-circle" width="50" height="50" alt="Avatar"></td>`;
+        html += `<td>${element.nome}</td>`;
+        html += `<td class="text-success fw-semibold">${element.pontuacao}</td>`;
+        html += '</tr>';
     });
 
     document.getElementById('rankingList').innerHTML = html;
-}
+};

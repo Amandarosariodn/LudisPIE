@@ -101,26 +101,30 @@
         </div>
 
         <h4>Tabela de Ranking</h4>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Foto</th>
-                    <th>Nome</th>
-                    <th>Pontuação</th>
-                </tr>
-            </thead>
-            <tbody id="rankingList">
-                <!-- Lista de jogadores aparecerá aqui via JS -->
-            </tbody>
-        </table>
-
+        <div class="ranking-container mt-5">
+            <h2 class="text-center mb-4">Ranking Geral</h2>
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Posição</th>
+                        <th>Avatar</th>
+                        <th>Nickname</th>
+                        <th>Pontuação</th>
+                    </tr>
+                </thead>
+                <tbody id="rankingList">
+                    <!-- Conteúdo preenchido via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
         <a href="mapa.html" class="btn btn-secondary mt-3">Voltar ao Mapa</a>
     </div>
 
     <script src="js/script.js"></script>
     <script src="js/ranking.js"></script>
     <script src="js/teste.js"></script>
+    <script src="js/auth.js"></script>
 </body>
 
 </html>

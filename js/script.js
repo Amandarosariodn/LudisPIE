@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const userImage = sessionStorage.getItem("userImage");
+    const userName = sessionStorage.getItem("userName");
+    const loggedInEmail = sessionStorage.getItem("loggedInUser");
+
     // === Mostrar/Ocultar senha ===
     function setupTogglePassword(toggleButtonId, passwordFieldId) {
         const toggleButton = document.getElementById(toggleButtonId);
@@ -12,11 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 this.querySelector("i").classList.toggle("bi-eye-slash", isPassword);
             });
         }
-        const avatarPreview = document.getElementById("avatarSelecionado");
-        if (avatarPreview && userImage) {
-            avatarPreview.src = userImage;
-        }
-
     }
 
     setupTogglePassword("togglePassword", "password");
@@ -35,11 +34,10 @@ document.addEventListener("DOMContentLoaded", function () {
             email,
             password,
             profileImage: profileImageBase64 || "",
-            name: name && name !== "" ? name : "Nome não informado"
+            name: name && name !== "" ? name : "Nickname não informado"
         });
         localStorage.setItem("users", JSON.stringify(users));
     }
-
 
     // === Cadastro ===
     const cadastroForm = document.getElementById("cadastroForm");
@@ -49,9 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const email = document.getElementById("email").value.trim();
             const password = document.getElementById("password").value;
             const passwordConfirm = document.getElementById("passwordConfirm").value;
-            const nameInput = document.getElementById("name");
-            const name = nameInput ? nameInput.value.trim() : "";
-
+            const name = document.getElementById("name")?.value.trim() || "";
             const profilePicInput = document.getElementById("profilePic");
 
             if (password !== passwordConfirm) {
@@ -59,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            let users = getUsers();
+            const users = getUsers();
             if (users.some(user => user.email === email)) {
                 alert("Esse email já está cadastrado!");
                 return;
@@ -70,13 +66,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 const reader = new FileReader();
                 reader.onload = function (e) {
                     saveUser(email, password, e.target.result, name);
-                    alert("Cadastro realizado com sucesso! Redirecionando para o login.");
+                    alert("Cadastro realizado com sucesso!");
                     window.location.href = "login.html";
                 };
                 reader.readAsDataURL(file);
             } else {
                 saveUser(email, password, null, name);
-                alert("Cadastro realizado com sucesso! Redirecionando para o login.");
+                alert("Cadastro realizado com sucesso!");
                 window.location.href = "login.html";
             }
         });
@@ -91,12 +87,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const password = document.getElementById("password").value;
             const users = getUsers();
 
-            const user = users.find(user => user.email === email && user.password === password);
+            const user = users.find(u => u.email === email && u.password === password);
             if (user) {
                 sessionStorage.setItem("loggedInUser", email);
                 sessionStorage.setItem("userImage", user.profileImage || "");
                 sessionStorage.setItem("userName", user.name || "Nome não informado");
-                alert("Login bem-sucedido! Redirecionando...");
+                alert("Login bem-sucedido!");
                 window.location.href = "home.html";
             } else {
                 alert("Email ou senha incorretos.");
@@ -104,27 +100,20 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // === Verificação de login e exibição de dados ===
-    const loggedInEmail = sessionStorage.getItem("loggedInUser");
-    const userImage = sessionStorage.getItem("userImage");
-    const userName = sessionStorage.getItem("userName");
-
+    // === Preencher informações no header ===
     const headerImage = document.getElementById("profileImage");
     const headerName = document.getElementById("userName");
     const userEmailElement = document.getElementById("userEmail");
 
-    if (loggedInEmail) {
-        if (userEmailElement) userEmailElement.innerText = loggedInEmail;
-        if (headerImage && userImage) headerImage.src = userImage;
-        if (headerName && userName) headerName.innerText = userName;
+    if (userEmailElement && loggedInEmail) userEmailElement.innerText = loggedInEmail;
+    if (headerImage && userImage) headerImage.src = userImage;
+    if (headerName && userName) headerName.innerText = userName;
 
-        const profileName = document.getElementById("profileName");
-        const profilePic = document.getElementById("profilePic");
-        if (profileName && userName) profileName.innerText = userName;
-        if (profilePic && userImage) profilePic.src = userImage;
-    } else if (userEmailElement || headerImage || headerName) {
-        window.location.href = "login.html";
-    }
+    const profileName = document.getElementById("profileName");
+    const profilePic = document.getElementById("profilePic");
+
+    if (profileName && userName) profileName.innerText = userName;
+    if (profilePic && userImage) profilePic.src = userImage;
 
     // === Logout ===
     const logoutButton = document.getElementById("logoutButton");
@@ -132,36 +121,36 @@ document.addEventListener("DOMContentLoaded", function () {
         logoutButton.addEventListener("click", function () {
             sessionStorage.clear();
             alert("Você saiu da conta.");
+            window.location.href = "login.html";
         });
     }
 
-    // === Menu lateral toggle ===
+    // === Menu lateral ===
     const menuButton = document.getElementById("menuButton");
     const sideMenu = document.getElementById("sideMenu");
 
     if (menuButton && sideMenu) {
-        menuButton.addEventListener("click", function () {
+        menuButton.addEventListener("click", () => {
             sideMenu.classList.toggle("open");
         });
 
-        document.addEventListener("click", function (event) {
+        document.addEventListener("click", (event) => {
             if (!sideMenu.contains(event.target) && !menuButton.contains(event.target)) {
                 sideMenu.classList.remove("open");
             }
         });
     }
 
-    // === Marcar item ativo do menu ===
+    // === Marcar link ativo no menu lateral ===
     const currentPage = window.location.pathname.split("/").pop();
-    document.querySelectorAll("#sideMenu ul li a").forEach(item => {
-        if (item.getAttribute("href") === currentPage) {
-            item.classList.add("active");
+    document.querySelectorAll("#sideMenu ul li a").forEach(link => {
+        if (link.getAttribute("href") === currentPage) {
+            link.classList.add("active");
         }
     });
 
-    // === Atualização de imagem de perfil (editar perfil) ===
+    // === Editar perfil: atualizar imagem ===
     const editInput = document.getElementById("editProfilePic");
-
     if (editInput) {
         editInput.addEventListener("change", function () {
             const file = this.files[0];
@@ -181,8 +170,65 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+
+    // === Avatar da galeria ===
+    const avatarPreview = document.getElementById("avatarSelecionado");
+    if (avatarPreview && userImage) {
+        avatarPreview.src = userImage;
+    }
+
+    // === Chatbot: imagem do bot e usuário ===
+    const botAvatar = document.getElementById("botAvatar");
+    if (botAvatar) botAvatar.src = "imagens/luddis-bot.png"; // ajuste para sua pasta
+
+    const userAvatar = document.getElementById("userAvatar");
+    if (userAvatar && userImage) {
+        userAvatar.src = userImage;
+    }
+
+    // === Tutorial ===
+    const video = document.getElementById('tutorialVideo');
+    const btnAssistido = document.getElementById('btnAssistido');
+
+    if (video && btnAssistido) {
+        const assistido = localStorage.getItem('tutorialAssistido');
+        if (assistido === 'true') {
+            btnAssistido.classList.remove('btn-outline-success');
+            btnAssistido.classList.add('btn-success');
+            btnAssistido.innerHTML = '<i class="bi bi-check-circle-fill"></i> Assistido';
+            btnAssistido.disabled = true;
+        }
+
+        video.addEventListener('ended', () => {
+            localStorage.setItem('tutorialAssistido', 'true');
+            btnAssistido.classList.remove('btn-outline-success');
+            btnAssistido.classList.add('btn-success');
+            btnAssistido.innerHTML = '<i class="bi bi-check-circle-fill"></i> Assistido';
+            btnAssistido.disabled = true;
+
+            const modalEl = document.getElementById('entendeuModal');
+            if (modalEl) {
+                const modal = new bootstrap.Modal(modalEl);
+                modal.show();
+
+                document.getElementById('btnProntoJogar')?.addEventListener('click', () => {
+                    modal.hide();
+                    window.location.href = 'mapa.html';
+                });
+            }
+        });
+
+        btnAssistido.addEventListener('click', () => {
+            localStorage.setItem('tutorialAssistido', 'true');
+            btnAssistido.classList.remove('btn-outline-success');
+            btnAssistido.classList.add('btn-success');
+            btnAssistido.innerHTML = '<i class="bi bi-check-circle-fill"></i> Assistido';
+            btnAssistido.disabled = true;
+        });
+    }
 });
 
+// === Salvar alterações do perfil ===
 function salvarPerfil() {
     const loggedInEmail = sessionStorage.getItem("loggedInUser");
     if (!loggedInEmail) {
@@ -191,7 +237,7 @@ function salvarPerfil() {
         return;
     }
 
-    const users = getUsers();
+    const users = JSON.parse(localStorage.getItem("users")) || [];
     const userIndex = users.findIndex(u => u.email === loggedInEmail);
     if (userIndex === -1) {
         alert("Usuário não encontrado.");
@@ -211,11 +257,11 @@ function salvarPerfil() {
     }
 
     localStorage.setItem("users", JSON.stringify(users));
-
     alert("Perfil atualizado com sucesso!");
     window.location.href = "perfil.html";
 }
 
+// === Abrir/Fechar Chat ===
 function toggleChat() {
     const chatBox = document.getElementById("chat-box");
     if (chatBox.classList.contains("d-none")) {
@@ -227,16 +273,3 @@ function toggleChat() {
         setTimeout(() => chatBox.classList.add("d-none"), 500);
     }
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Carregar imagem do bot (fixa)
-    const botAvatar = document.getElementById("botAvatar");
-    botAvatar.src = "images/luddis-bot.png"; // substitua com o caminho da sua imagem do bot
-
-    // Carregar imagem do usuário
-    const userAvatar = document.getElementById("userAvatar");
-    const userImage = sessionStorage.getItem("userImage");
-    if (userImage && userAvatar) {
-        userAvatar.src = userImage;
-    }
-});

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financeiro</title>
+  <link rel="stylesheet" href="financeiro.css">
+</head>
+<body>
+  <div id="intro" class="tela-intro">
+    <h1>BEM VINDO</h1>
+    <p>ao<br><strong>Reino da educação financeira</strong></p>
+    <img src="img/financeiro.png" alt="Cofrinho e moedas" class="intro-img">
+    <button onclick="iniciarQuiz()">Começar</button>
+  </div>
+
+  <div id="quiz" class="tela-quiz hidden">
+    <h2>*Pergunta*</h2>
+    <div class="opcoes">
+      <button>Opção 1</button>
+      <button>Opção 2</button>
+      <button>Opção 3</button>
+    </div>
+    <button class="proximo">Próximo</button>
+  </div>
+
+  <script>
+    function iniciarQuiz() {
+      document.getElementById('intro').classList.add('hidden');
+      document.getElementById('quiz').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>

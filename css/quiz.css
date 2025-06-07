@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+/* INTRODUÇÃO */
+.intro {
+  background: linear-gradient(#a2df79, #3b7d38);
+  height: 100vh;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('imagens/intro_financeiro.jpg'); /* Substitua pela sua imagem */
+  background-size: cover;
+  background-position: center;
+}
+
+.intro h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.intro p {
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+#startBtn {
+  font-size: 24px;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  cursor: pointer;
+}
+
+/* QUIZ */
+.quiz {
+  background: #1d3f1d url('imagens/quiz_fundo_financeiro.png') no-repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+  padding: 40px;
+  color: white;
+  text-align: center;
+}
+
+.question-title {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.option {
+  padding: 15px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  cursor: pointer;
+}
+
+#nextBtn {
+  margin-top: 30px;
+  padding: 12px 40px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
