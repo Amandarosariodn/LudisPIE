@@ -3,17 +3,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const userName = sessionStorage.getItem("userName");
     const loggedInEmail = sessionStorage.getItem("loggedInUser");
 
-    // === Mostrar/Ocultar senha ===
     function setupTogglePassword(toggleButtonId, passwordFieldId) {
         const toggleButton = document.getElementById(toggleButtonId);
         const passwordField = document.getElementById(passwordFieldId);
-
         if (toggleButton && passwordField) {
             toggleButton.addEventListener("click", function () {
                 const isPassword = passwordField.type === "password";
                 passwordField.type = isPassword ? "text" : "password";
-                this.querySelector("i").classList.toggle("bi-eye", !isPassword);
-                this.querySelector("i").classList.toggle("bi-eye-slash", isPassword);
+                const icon = this.querySelector("i");
+                if (icon) {
+                    icon.classList.toggle("bi-eye", !isPassword);
+                    icon.classList.toggle("bi-eye-slash", isPassword);
+                }
             });
         }
     }
@@ -21,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
     setupTogglePassword("togglePassword", "password");
     setupTogglePassword("togglePasswordConfirm", "passwordConfirm");
 
-    // === LocalStorage helpers ===
     function getUsers() {
         return JSON.parse(localStorage.getItem("users")) || [];
     }
@@ -34,17 +34,16 @@ document.addEventListener("DOMContentLoaded", function () {
             email,
             password,
             profileImage: profileImageBase64 || "",
-            name: name && name !== "" ? name : "Nickname não informado"
+            name: name || "Nickname não informado"
         });
         localStorage.setItem("users", JSON.stringify(users));
     }
 
-    // === Cadastro ===
     const cadastroForm = document.getElementById("cadastroForm");
     if (cadastroForm) {
         cadastroForm.addEventListener("submit", function (event) {
             event.preventDefault();
-            const email = document.getElementById("email").value.trim();
+            const email = document.getElementById("email").value.trim().toLowerCase();
             const password = document.getElementById("password").value;
             const passwordConfirm = document.getElementById("passwordConfirm").value;
             const name = document.getElementById("name")?.value.trim() || "";
@@ -78,18 +77,17 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // === Login ===
     const loginForm = document.getElementById("loginForm");
     if (loginForm) {
         loginForm.addEventListener("submit", function (event) {
             event.preventDefault();
-            const email = document.getElementById("email").value.trim();
+            const email = document.getElementById("email").value.trim().toLowerCase();
             const password = document.getElementById("password").value;
             const users = getUsers();
 
             const user = users.find(u => u.email === email && u.password === password);
             if (user) {
-                sessionStorage.setItem("loggedInUser", email);
+                sessionStorage.setItem("loggedInUser", user.email);
                 sessionStorage.setItem("userImage", user.profileImage || "");
                 sessionStorage.setItem("userName", user.name || "Nome não informado");
                 alert("Login bem-sucedido!");
@@ -100,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // === Preencher informações no header ===
     const headerImage = document.getElementById("profileImage");
     const headerName = document.getElementById("userName");
     const userEmailElement = document.getElementById("userEmail");
@@ -115,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (profileName && userName) profileName.innerText = userName;
     if (profilePic && userImage) profilePic.src = userImage;
 
-    // === Logout ===
     const logoutButton = document.getElementById("logoutButton");
     if (logoutButton) {
         logoutButton.addEventListener("click", function () {
@@ -125,7 +121,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // === Menu lateral ===
     const menuButton = document.getElementById("menuButton");
     const sideMenu = document.getElementById("sideMenu");
 
@@ -133,7 +128,6 @@ document.addEventListener("DOMContentLoaded", function () {
         menuButton.addEventListener("click", () => {
             sideMenu.classList.toggle("open");
         });
-
         document.addEventListener("click", (event) => {
             if (!sideMenu.contains(event.target) && !menuButton.contains(event.target)) {
                 sideMenu.classList.remove("open");
@@ -141,7 +135,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // === Marcar link ativo no menu lateral ===
     const currentPage = window.location.pathname.split("/").pop();
     document.querySelectorAll("#sideMenu ul li a").forEach(link => {
         if (link.getAttribute("href") === currentPage) {
@@ -149,7 +142,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // === Editar perfil: atualizar imagem ===
     const editInput = document.getElementById("editProfilePic");
     if (editInput) {
         editInput.addEventListener("change", function () {
@@ -159,10 +151,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 reader.onload = function (e) {
                     const imageUrl = e.target.result;
                     sessionStorage.setItem("userImage", imageUrl);
-
-                    const profilePic = document.getElementById("profilePic");
-                    const headerImage = document.getElementById("profileImage");
-
                     if (profilePic) profilePic.src = imageUrl;
                     if (headerImage) headerImage.src = imageUrl;
                 };
@@ -171,22 +159,19 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // === Avatar da galeria ===
     const avatarPreview = document.getElementById("avatarSelecionado");
     if (avatarPreview && userImage) {
         avatarPreview.src = userImage;
     }
 
-    // === Chatbot: imagem do bot e usuário ===
     const botAvatar = document.getElementById("botAvatar");
-    if (botAvatar) botAvatar.src = "imagens/luddis-bot.png"; // ajuste para sua pasta
+    if (botAvatar) botAvatar.src = "imagens/luddis-bot.png";
 
     const userAvatar = document.getElementById("userAvatar");
     if (userAvatar && userImage) {
         userAvatar.src = userImage;
     }
 
-    // === Tutorial ===
     const video = document.getElementById('tutorialVideo');
     const btnAssistido = document.getElementById('btnAssistido');
 
@@ -210,7 +195,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (modalEl) {
                 const modal = new bootstrap.Modal(modalEl);
                 modal.show();
-
                 document.getElementById('btnProntoJogar')?.addEventListener('click', () => {
                     modal.hide();
                     window.location.href = 'mapa.html';
@@ -226,50 +210,49 @@ document.addEventListener("DOMContentLoaded", function () {
             btnAssistido.disabled = true;
         });
     }
+
+    // Disponibilizar salvarPerfil globalmente
+    window.salvarPerfil = function () {
+        if (!loggedInEmail) {
+            alert("Usuário não logado.");
+            window.location.href = "login.html";
+            return;
+        }
+
+        const users = getUsers();
+        const userIndex = users.findIndex(u => u.email === loggedInEmail);
+        if (userIndex === -1) {
+            alert("Usuário não encontrado.");
+            return;
+        }
+
+        const newName = document.getElementById("editName")?.value.trim();
+        const newImage = sessionStorage.getItem("userImage");
+
+        if (newName) {
+            users[userIndex].name = newName;
+            sessionStorage.setItem("userName", newName);
+        }
+
+        if (newImage) {
+            users[userIndex].profileImage = newImage;
+        }
+
+        localStorage.setItem("users", JSON.stringify(users));
+        alert("Perfil atualizado com sucesso!");
+        window.location.href = "perfil.html";
+    };
+
+    // Toggle do Chat
+    window.toggleChat = function () {
+        const chatBox = document.getElementById("chat-box");
+        if (chatBox.classList.contains("d-none")) {
+            chatBox.classList.remove("d-none", "animate__fadeOutDown");
+            chatBox.classList.add("animate__fadeInUp");
+        } else {
+            chatBox.classList.remove("animate__fadeInUp");
+            chatBox.classList.add("animate__fadeOutDown");
+            setTimeout(() => chatBox.classList.add("d-none"), 500);
+        }
+    };
 });
-
-// === Salvar alterações do perfil ===
-function salvarPerfil() {
-    const loggedInEmail = sessionStorage.getItem("loggedInUser");
-    if (!loggedInEmail) {
-        alert("Usuário não logado.");
-        window.location.href = "login.html";
-        return;
-    }
-
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const userIndex = users.findIndex(u => u.email === loggedInEmail);
-    if (userIndex === -1) {
-        alert("Usuário não encontrado.");
-        return;
-    }
-
-    const newName = document.getElementById("editName")?.value.trim();
-    const newImage = sessionStorage.getItem("userImage");
-
-    if (newName) {
-        users[userIndex].name = newName;
-        sessionStorage.setItem("userName", newName);
-    }
-
-    if (newImage) {
-        users[userIndex].profileImage = newImage;
-    }
-
-    localStorage.setItem("users", JSON.stringify(users));
-    alert("Perfil atualizado com sucesso!");
-    window.location.href = "perfil.html";
-}
-
-// === Abrir/Fechar Chat ===
-function toggleChat() {
-    const chatBox = document.getElementById("chat-box");
-    if (chatBox.classList.contains("d-none")) {
-        chatBox.classList.remove("d-none", "animate__fadeOutDown");
-        chatBox.classList.add("animate__fadeInUp");
-    } else {
-        chatBox.classList.remove("animate__fadeInUp");
-        chatBox.classList.add("animate__fadeOutDown");
-        setTimeout(() => chatBox.classList.add("d-none"), 500);
-    }
-}

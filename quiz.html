@@ -15,32 +15,7 @@
   <main class="container mt-4" id="quiz-container">
     <div id="questionContainer"></div>
     <button id="nextButton" onclick="nextQuestion()" disabled>Próximo</button>
-
   </main>
-
-  <script>
-    function getTemaAtual() {
-        const params = new URLSearchParams(window.location.search);
-        return params.get('tema');
-    }
-
-    function marcarFaseComoCompleta(tema) {
-        let progresso = JSON.parse(localStorage.getItem("progressoFases")) || [];
-        if (!progresso.includes(tema)) {
-            progresso.push(tema);
-            localStorage.setItem("progressoFases", JSON.stringify(progresso));
-        }
-    }
-
-    document.getElementById("btnFinalizarQuiz").addEventListener("click", function () {
-        const temaAtual = getTemaAtual();
-        if (temaAtual) {
-            marcarFaseComoCompleta(temaAtual);
-        }
-        window.location.href = "mapa.html";
-    });
-</script>
-
 
   <script src="js/quiz.js"></script>
 </body>
