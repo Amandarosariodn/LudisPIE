@@ -255,4 +255,38 @@ document.addEventListener("DOMContentLoaded", function () {
             setTimeout(() => chatBox.classList.add("d-none"), 500);
         }
     };
+
+    const posEl = document.getElementById("loggedUserRankingInfo");
+
+if (posEl && loggedInEmail) {
+    const users = getUsers();
+    const ranking = JSON.parse(localStorage.getItem("ranking")) || [];
+
+    const pontosPorEmail = {};
+    ranking.forEach(entry => {
+        if (!entry.email) return;
+        const email = entry.email.toLowerCase();
+        pontosPorEmail[email] = (pontosPorEmail[email] || 0) + Number(entry.pontuacao || 0);
+    });
+
+    const rankingCompleto = users.map(user => {
+        const email = user.email.toLowerCase();
+        return {
+            nome: user.name || email,
+            email,
+            pontuacao: pontosPorEmail[email] || 0
+        };
+    });
+
+    rankingCompleto.sort((a, b) => b.pontuacao - a.pontuacao);
+
+    const index = rankingCompleto.findIndex(u => u.email === loggedInEmail.toLowerCase());
+
+    if (index >= 0) {
+        const posicao = index + 1;
+        const pontos = rankingCompleto[index].pontuacao;
+        posEl.textContent = `Você está em ${posicao}º lugar no ranking, com ${pontos} ponto${pontos !== 1 ? 's' : ''}!`;
+    }
+}
+
 });
