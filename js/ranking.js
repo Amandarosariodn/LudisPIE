@@ -24,19 +24,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // Ordena por pontuação
   rankingArray.sort((a, b) => b.pontuacaoTotal - a.pontuacaoTotal);
 
-  // Monta a tabela
+  // Monta a tabela - mostra apenas os 5 primeiros
   const rankingBody = document.getElementById("rankingBody");
   rankingBody.innerHTML = "";
-  rankingArray.forEach((jogador, index) => {
+  rankingArray.slice(0, 5).forEach((jogador, index) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${index + 1}º</td>
-      <td><img src="${jogador.foto}" alt="Avatar" width="40" height="40" class="rounded-circle"></td>
-      <td>${jogador.nome}</td>
-      <td>${jogador.pontuacaoTotal}</td>
-    `;
+    <td>${index + 1}º</td>
+    <td><img src="${jogador.foto}" alt="Avatar" width="40" height="40" class="rounded-circle"></td>
+    <td>${jogador.nome}</td>
+    <td>${jogador.pontuacaoTotal}</td>
+  `;
     rankingBody.appendChild(tr);
   });
+
 
   // Exibe info do usuário logado
   const loggedEmail = sessionStorage.getItem("loggedInUser")?.toLowerCase();

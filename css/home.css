@@ -1,4 +1,4 @@
-/* Estilos gerais */
+/* === ESTILOS GERAIS === */
 body {
     background-color: white;
     height: 100vh;
@@ -8,7 +8,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* Header */
+/* === HEADER === */
 header {
     background: linear-gradient(to top, #FFA007, #FF0676);
     padding: 20px;
@@ -30,42 +30,39 @@ header {
     flex-grow: 1;
 }
 
-/* Ícone do menu */
-.menu-icon i {
+.menu-icon i,
+header i {
     font-size: 30px;
     cursor: pointer;
 }
 
-/* Ícone da página inicial */
+header button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+}
+
 .home-icon a {
     text-decoration: none;
 }
 
+header a img,
+.profile-img,
 .home-icon-img {
     width: 40px;
     height: 40px;
     object-fit: cover;
     border-radius: 50%;
     cursor: pointer;
-    margin-left: 20px;
-}
-
-/* Foto de perfil */
-.profile-link {
-    text-decoration: none;
 }
 
 .profile-img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
     border: 2px solid white;
-    object-fit: cover;
-    cursor: pointer;
     margin-left: 20px;
 }
 
-/* Menu lateral */
+/* === MENU LATERAL === */
 .side-menu {
     position: fixed;
     top: 79px;
@@ -102,44 +99,20 @@ header {
     border-radius: 5px;
 }
 
-#sideMenu ul li a.active {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #FFD700;
-}
-
+#sideMenu ul li a.active,
 #sideMenu ul li a:hover {
-    color: #FFD700;
     background-color: rgba(255, 255, 255, 0.1);
+    color: #FFD700;
 }
 
 #sideMenu ul li a i {
     margin-right: 10px;
 }
 
-/* Botão do menu */
-header button {
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 24px;
-}
-
-header i {
-    font-size: 30px;
-}
-
-/* Logo e imagem de perfil */
-header a img {
-    height: 40px;
-    border-radius: 50%;
-    max-height: 40px;
-}
-
-/* Página de perfil */
+/* === PÁGINA DE PERFIL === */
 .profile-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     text-align: center;
 }
@@ -154,7 +127,6 @@ header a img {
     font-weight: 500;
     color: #333;
     margin-top: 10px;
-    margin-bottom: 0;
 }
 
 h2 {
@@ -182,15 +154,7 @@ label {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
     border-radius: 50%;
-}
-
-#editProfilePicBtn {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    z-index: 10;
 }
 
 .edit-icon-btn {
@@ -206,24 +170,24 @@ label {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
     color: #333;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     transition: background-color 0.2s ease;
+    text-decoration: none;
 }
 
 .edit-icon-btn:hover {
     background-color: #e2e2e2;
 }
 
-/* Avatares */
+/* === AVATARES === */
 .avatar-option {
     cursor: pointer;
     border-radius: 50%;
-    transition: transform 0.2s, border 0.2s;
     width: 100px;
     height: 100px;
     object-fit: cover;
+    transition: transform 0.2s, border 0.2s;
 }
 
 .avatar-option:hover {
@@ -281,7 +245,7 @@ label {
     margin-top: 30px;
 }
 
-/* Fases */
+/* === FASES E MAPA === */
 .fase {
     width: 200px;
     height: 100px;
@@ -299,6 +263,20 @@ label {
     color: white;
 }
 
+.fase a {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.fase:hover {
+    transform: scale(1.05);
+}
+
 #fase1 { background-color: #FF6F61; }
 #fase2 { background-color: #6A5ACD; }
 #fase3 { background-color: #FF69B4; }
@@ -306,29 +284,11 @@ label {
 #fase5 { background-color: #FF8C00; }
 #fase6 { background-color: #4682B4; }
 
-.fase a {
-    color: white;
-    text-decoration: none;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.fase:hover {
-    transform: scale(1.05);
-}
-
-.fase-completa {
-    background-color: #28a745;
-}
-
+.fase-completa { background-color: #28a745; }
 .fase-bloqueada {
     background-color: #6c757d;
     cursor: not-allowed;
 }
-
 .fase-pendente {
     background-color: #ffc107;
     color: #000;
@@ -343,11 +303,10 @@ label {
 }
 
 .fase-botao {
-    flex: 0 0 auto;
     margin: 10px;
 }
 
-/* Ranking - Cartão do jogador */
+/* === RANKING === */
 .player-card {
     display: flex;
     align-items: center;
@@ -358,7 +317,7 @@ label {
     border: 2px solid #3D198E;
 }
 
-/* Chatbot */
+/* === CHATBOT === */
 #chatbot {
     position: fixed;
     bottom: 80px;
@@ -439,7 +398,6 @@ label {
     z-index: 9999;
 }
 
-/* Estilo das mensagens */
 .chat-message {
     margin: 5px 0;
     display: flex;
@@ -447,13 +405,8 @@ label {
     gap: 10px;
 }
 
-.chat-message.bot {
-    flex-direction: row;
-}
-
-.chat-message.user {
-    flex-direction: row-reverse;
-}
+.chat-message.bot { flex-direction: row; }
+.chat-message.user { flex-direction: row-reverse; }
 
 .chat-message .avatar {
     width: 30px;

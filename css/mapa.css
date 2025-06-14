@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: 'Arial', sans-serif;
   background: linear-gradient(orange, deeppink);
   color: #fff;
@@ -17,6 +18,10 @@ header h1 {
   width: 90%;
   max-width: 900px;
   margin: auto;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
 }
 
 .mapa-fundo {
@@ -39,6 +44,7 @@ header h1 {
 
 .fase.desbloqueada {
   background-color: #00ff88;
+  animation: pulse 1.2s infinite;
 }
 
 .fase.bloqueada {
@@ -72,13 +78,119 @@ button {
   cursor: pointer;
 }
 
-.fase.desbloqueada {
-  background-color: #00ff88;
-  animation: pulse 1.2s infinite;
+/* Animação para fases desbloqueadas */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+/* Botões das fases */
+.btn-fase {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  background-color: #444;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.btn-fase:hover {
+  background-color: #666;
+}
+
+/* Card modal */
+.card-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: brightness(0.5);
+  z-index: 1000;
+}
+
+.card-modal.visible {
+  display: flex;
+}
+
+.card-content {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+  padding: 20px;
+  max-width: 500px;
+  width: 90%;
+  color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+  text-align: center;
+}
+
+.card-content h2 {
+  margin: 0 0 10px 0;
+}
+
+.card-content p {
+  margin: 0 0 15px 0;
+}
+
+#cardWelcome {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #ffd700;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-close,
+.btn-start {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: 100px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.btn-close {
+  background: #aaa;
+  color: #222;
+}
+
+.btn-close:hover {
+  background: #888;
+}
+
+.btn-start {
+  background: #28a745;
+  color: white;
+}
+
+.btn-start:hover {
+  background: #218838;
 }

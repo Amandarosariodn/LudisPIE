@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
     <!-- Seu CSS -->
-
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
 
@@ -37,7 +36,7 @@
         <div class="header-center"></div>
 
         <a href="perfil.html">
-            <img src="" alt="Foto de Perfil" id="profileImage" class="rounded-circle" width="50" height="50">
+            <img src="" id="profileImage" class="rounded-circle" width="50" height="50">
         </a>
     </header>
 
@@ -97,7 +96,33 @@
         </div>
     </main>
 
-    <!-- Botão e Janela do Chatbot, se houver -->
+    <!-- Botão flutuante para abrir o chatbot -->
+    <button id="chatbot-toggle" title="Abrir Chat">
+        💬
+    </button>
+
+    <!-- Janela do Chatbot -->
+    <div id="chatbot">
+        <div id="chatbot-header">
+            <div class="bot-info">
+                <img src="imagens/chatbot.png" id="botAvatar" alt="Bot Avatar">
+                <span>LudisBot</span>
+            </div>
+            <button id="closeChatbot" class="btn btn-sm btn-light">X</button>
+        </div>
+        <div id="chatbot-messages">
+            <div class="chat-message bot">
+                <img src="imagens/chatbot.png" class="avatar" alt="Bot">
+                <div class="text">Olá! Como posso te ajudar?</div>
+            </div>
+        </div>
+        <div id="chatbot-input-area">
+            <input type="text" id="chatbot-input" placeholder="Digite uma mensagem...">
+            <button id="chatbot-send">Enviar</button>
+        </div>
+    </div>
+
+
 
     <!-- Scripts -->
     <script>
@@ -119,6 +144,7 @@
         });
     </script>
     <script src="js\script.js"></script>
+    <script src="js\chatbot.js"></script>
 </body>
 
 </html>

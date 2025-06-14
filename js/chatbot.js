@@ -35,7 +35,7 @@ function appendMessage(sender, text, type) {
 
     const avatar = document.createElement('img');
     avatar.className = 'avatar';
-    avatar.src = type === 'bot' ? 'imagens/bot_avatar.png' : 'imagens/usuario_padrao.png';
+    avatar.src = type === 'bot' ? 'imagens/chatbot.png' : 'imagens/chatbot.png';
 
     const messageText = document.createElement('div');
     messageText.className = 'text';
@@ -52,13 +52,15 @@ function getBotResponse(message) {
 
     if (msg.includes('fase') || msg.includes('mapa')) {
         return 'Você pode acessar as fases clicando em "Mapa de Fases" no menu.';
-    } else if (msg.includes('ranking') || msg.includes('pontuação')) {
+    } else if (msg.includes('ranking') || msg.includes('pontuação') || msg.includes('posição')) {
         return 'Você pode ver sua pontuação e posição na página "Ranking".';
-    } else if (msg.includes('perfil')) {
-        return 'Na página "Meu Perfil", você pode editar seus dados e imagem.';
-    } else if (msg.includes('suporte')) {
-        return 'Você pode acessar a página "Suporte" pelo menu lateral.';
+    } else if (msg.includes('tutorial') || msg.includes('como jogar')) {
+        return 'Acesse o "Tutorial" no menu para aprender a jogar.';
+    } else if (msg.includes('suporte') || msg.includes('ajuda') || msg.includes('problema')) {
+        return 'Você pode acessar a página "Suporte" pelo menu lateral para ajuda.';
+    } else if (msg.includes('perfil') || msg.includes('minha conta') || msg.includes('editar')) {
+        return 'Na página "Perfil", você pode editar seus dados e imagem.';
     } else {
-        return 'Desculpe, ainda estou aprendendo. Tente perguntar sobre fases, ranking ou perfil.';
+        return 'Desculpe, ainda estou aprendendo. Tente perguntar sobre fases, ranking, perfil, tutorial, suporte ou como sair.';
     }
 }

@@ -18,125 +18,9 @@
 
     <!-- Seu CSS -->
     <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/mapa.css">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f0f0f0;
-        }
 
-        .mapa-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            padding: 20px;
-        }
-
-        /* Botões das fases pequenos */
-        .btn-fase {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            background-color: #444;
-            color: white;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-fase:hover {
-            background-color: #666;
-        }
-
-        /* Card modal grande */
-        .card-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-size: cover;
-            background-position: center;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: brightness(0.5);
-            z-index: 1000;
-        }
-
-        .card-modal.visible {
-            display: flex;
-        }
-
-        .card-content {
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 15px;
-            padding: 20px;
-            max-width: 500px;
-            width: 90%;
-            color: white;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
-            text-align: center;
-        }
-
-        .card-content h2 {
-            margin: 0 0 10px 0;
-        }
-
-        .card-content p {
-            margin: 0 0 15px 0;
-        }
-
-        #cardWelcome {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #ffd700;
-            /* amarelo dourado para destacar */
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .card-buttons {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-
-        .btn-close,
-        .btn-start {
-            padding: 10px 20px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            white-space: nowrap;
-            min-width: 100px;
-            text-align: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-close {
-            background: #aaa;
-            color: #222;
-        }
-
-        .btn-close:hover {
-            background: #888;
-        }
-
-        .btn-start {
-            background: #28a745;
-            color: white;
-        }
-
-        .btn-start:hover {
-            background: #218838;
-        }
-    </style>
 </head>
 
 <body class="home">
@@ -193,40 +77,34 @@
         // Dados das fases com imagens e descrições
         const fases = {
             financeiro: {
-                titulo: "Financeiro",
-                descricao:
-                    "Aprenda sobre orçamento, investimentos e planejamento financeiro para controlar melhor seu dinheiro.",
-                imagem:
-                    "https://images.unsplash.com/photo-1504274066651-8d31a536b11a?auto=format&fit=crop&w=800&q=80",
+                titulo:    "Financeiro",
+                descricao: "Aprenda sobre orçamento, investimentos e planejamento financeiro para controlar melhor seu dinheiro.",
+                imagem:    "https://images.unsplash.com/photo-1504274066651-8d31a536b11a?auto=format&fit=crop&w=800&q=80",
             },
             tecnologia: {
-                titulo: "Tecnologia",
+                titulo:    "Tecnologia",
                 descricao: "Descubra conceitos básicos de programação, internet e ferramentas digitais.",
-                imagem:
-                    "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+                imagem:    "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
             },
             empoderamento: {
-                titulo: "Empoderamento",
+                titulo:    "Empoderamento",
                 descricao: "Entenda o significado e a importância do empoderamento para a sociedade.",
-                imagem:
-                    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
+                imagem:    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
             },
             carreiras: {
-                titulo: "Carreiras",
+                titulo:    "Carreiras",
                 descricao: "Dicas e conceitos essenciais para o desenvolvimento profissional e pessoal.",
-                imagem:
-                    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80",
+                imagem:    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80",
             },
             direitos_humanos: {
-                titulo: "Direitos Humanos",
+                titulo:    "Direitos Humanos",
                 descricao: "Conheça seus direitos e a importância da igualdade para todos.",
-                imagem: "imagens/direitoshumanos.jpg",
+                imagem:    "imagens/direitoshumanos.jpg",
             },
             empreendedorismo: {
-                titulo: "Empreendedorismo",
+                titulo:    "Empreendedorismo",
                 descricao: "Saiba como inovar e empreender no mercado atual.",
-                imagem:
-                    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+                imagem:    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
             },
         };
 
